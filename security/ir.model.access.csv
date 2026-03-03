@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_accounting_report_preview_user,access.accounting.report.preview.user,model_accounting_report_preview,account.group_account_user,1,1,1,1
+access_accounting_report_preview_manager,access.accounting.report.preview.manager,model_accounting_report_preview,account.group_account_manager,1,1,1,1
+access_accounting_report_preview_line_user,access.accounting.report.preview.line.user,model_accounting_report_preview_line,account.group_account_user,1,1,1,1
+access_accounting_report_preview_line_manager,access.accounting.report.preview.line.manager,model_accounting_report_preview_line,account.group_account_manager,1,1,1,1
+access_account_audit_report_preview_user,access.account.audit.report.preview.user,model_account_audit_report_preview,account.group_account_user,1,1,1,1
+access_account_audit_report_preview_manager,access.account.audit.report.preview.manager,model_account_audit_report_preview,account.group_account_manager,1,1,1,1
+access_account_audit_report_preview_line_user,access.account.audit.report.preview.line.user,model_account_audit_report_preview_line,account.group_account_user,1,1,1,1
+access_account_audit_report_preview_line_manager,access.account.audit.report.preview.line.manager,model_account_audit_report_preview_line,account.group_account_manager,1,1,1,1

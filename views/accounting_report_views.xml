@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_accounting_report_form_inherit_view_output" model="ir.ui.view">
+        <field name="name">accounting.report.form.inherit.view.output</field>
+        <field name="model">accounting.report</field>
+        <field name="inherit_id" ref="accounting_pdf_reports.accounting_report_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='check_report']" position="after">
+                <button
+                    name="action_view_report"
+                    string="Ver vista"
+                    type="object"
+                    class="btn btn-secondary"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_accounting_report_preview_form" model="ir.ui.view">
+        <field name="name">accounting.report.preview.form</field>
+        <field name="model">accounting.report.preview</field>
+        <field name="arch" type="xml">
+            <form string="Vista previa de reporte">
+                <header>
+                    <button
+                        name="action_export_pdf"
+                        string="Ver PDF"
+                        type="object"
+                        class="btn btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <group col="4">
+                        <field name="account_report_id" string="Reporte" readonly="1"/>
+                        <field name="company_id" string="Compañía" readonly="1"/>
+                        <field name="target_move" string="Apuntes" readonly="1"/>
+                        <field name="label_filter" string="Etiqueta comparativo" readonly="1" invisible="enable_filter == False"/>
+                    </group>
+                    <group col="4">
+                        <field name="date_from" string="Desde" readonly="1"/>
+                        <field name="date_to" string="Hasta" readonly="1"/>
+                        <field name="debit_credit" invisible="1"/>
+                        <field name="enable_filter" invisible="1"/>
+                        <field name="report_wizard_id" readonly="1" invisible="1"/>
+                    </group>
+                    <field name="line_ids" nolabel="1" readonly="1">
+                        <tree create="0" edit="0" delete="0" default_order="sequence asc"
+                              decoration-bf="line_type == 'report'"
+                              decoration-muted="line_type == 'account'">
+                            <field name="line_type" column_invisible="True"/>
+                            <field name="name"/>
+                            <field name="debit" optional="show" widget="monetary" sum="Total Débito" column_invisible="parent.debit_credit == False"/>
+                            <field name="credit" optional="show" widget="monetary" sum="Total Crédito" column_invisible="parent.debit_credit == False"/>
+                            <field name="balance" widget="monetary" sum="Total Balance"/>
+                            <field name="balance_cmp" widget="monetary" sum="Total Comparativo" column_invisible="parent.enable_filter == False"/>
+                            <field name="currency_id" column_invisible="True"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_report_general_ledger_inherit_preview" model="ir.ui.view">
+        <field name="name">account.report.general.ledger.inherit.preview</field>
+        <field name="model">account.report.general.ledger</field>
+        <field name="inherit_id" ref="accounting_pdf_reports.account_report_general_ledger_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='check_report']" position="after">
+                <button
+                    name="action_view_report"
+                    string="Ver vista"
+                    type="object"
+                    class="btn btn-secondary"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_balance_report_inherit_preview" model="ir.ui.view">
+        <field name="name">account.balance.report.inherit.preview</field>
+        <field name="model">account.balance.report</field>
+        <field name="inherit_id" ref="accounting_pdf_reports.account_report_balance_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='check_report']" position="after">
+                <button
+                    name="action_view_report"
+                    string="Ver vista"
+                    type="object"
+                    class="btn btn-secondary"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_print_journal_inherit_preview" model="ir.ui.view">
+        <field name="name">account.print.journal.inherit.preview</field>
+        <field name="model">account.print.journal</field>
+        <field name="inherit_id" ref="accounting_pdf_reports.account_report_print_journal_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='check_report']" position="after">
+                <button
+                    name="action_view_report"
+                    string="Ver vista"
+                    type="object"
+                    class="btn btn-secondary"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_tax_report_wizard_inherit_preview" model="ir.ui.view">
+        <field name="name">account.tax.report.wizard.inherit.preview</field>
+        <field name="model">account.tax.report.wizard</field>
+        <field name="inherit_id" ref="accounting_pdf_reports.accounting_tax_report_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//footer/button[@name='check_report']" position="after">
+                <button
+                    name="action_view_report"
+                    string="Ver vista"
+                    type="object"
+                    class="btn btn-secondary"
+                />
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_audit_report_preview_form" model="ir.ui.view">
+        <field name="name">account.audit.report.preview.form</field>
+        <field name="model">account.audit.report.preview</field>
+        <field name="arch" type="xml">
+            <form string="Vista previa de reporte de auditoría">
+                <header>
+                    <button
+                        name="action_export_pdf"
+                        string="Ver PDF"
+                        type="object"
+                        class="btn btn-primary"
+                    />
+                </header>
+                <sheet>
+                    <group col="4">
+                        <field name="name" readonly="1"/>
+                        <field name="report_type" readonly="1"/>
+                        <field name="company_id" readonly="1"/>
+                        <field name="target_move" readonly="1" invisible="report_type == 'tax_report'"/>
+                    </group>
+                    <group col="4">
+                        <field name="date_from" readonly="1"/>
+                        <field name="date_to" readonly="1"/>
+                        <field name="wizard_ref" readonly="1" invisible="1"/>
+                    </group>
+                    <field name="line_ids" nolabel="1" readonly="1">
+                        <tree create="0" edit="0" delete="0" default_order="sequence asc"
+                              decoration-bf="line_type == 'section'"
+                              decoration-muted="line_type == 'line'">
+                            <field name="line_type" column_invisible="True"/>
+                            <field name="date" optional="show"
+                                   column_invisible="parent.report_type not in ('general_ledger', 'journals_audit')"/>
+                            <field name="code" optional="show"
+                                   column_invisible="parent.report_type == 'tax_report'"/>
+                            <field name="journal_name" string="Diario" optional="show"
+                                   column_invisible="parent.report_type not in ('general_ledger', 'journals_audit')"/>
+                            <field name="move_name" string="Asiento" optional="show"
+                                   column_invisible="parent.report_type not in ('general_ledger', 'journals_audit')"/>
+                            <field name="partner_name" string="Partner" optional="show"
+                                   column_invisible="parent.report_type not in ('general_ledger', 'journals_audit')"/>
+                            <field name="name" string="Detalle"/>
+                            <field name="debit" widget="monetary" optional="show" sum="Total Débito"
+                                   column_invisible="parent.report_type == 'tax_report'"/>
+                            <field name="credit" widget="monetary" optional="show" sum="Total Crédito"
+                                   column_invisible="parent.report_type == 'tax_report'"/>
+                            <field name="balance" widget="monetary" optional="show" sum="Total Balance"
+                                   column_invisible="parent.report_type == 'tax_report'"/>
+                            <field name="net" widget="monetary" optional="show" sum="Total Neto"
+                                   column_invisible="parent.report_type != 'tax_report'"/>
+                            <field name="tax" widget="monetary" optional="show" sum="Total Impuesto"
+                                   column_invisible="parent.report_type != 'tax_report'"/>
+                            <field name="currency_id" column_invisible="True"/>
+                        </tree>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
